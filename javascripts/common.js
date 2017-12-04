@@ -1,8 +1,8 @@
 var requestURL = "https://api.kenle.info/pwa-example/api/announcement";
 
 $(function() {
+    //1. Get the cached response for cache-then-network strategy
     if ('caches' in window) {
-        //Get the cached response for cache-then-network strategy
         caches.match(requestURL).then(function(response) {
           if (response) {
             //Process the cached resposne with response.json() to return the data
@@ -13,7 +13,7 @@ $(function() {
         });
     }
 
-    //Get the update-to-date data with cache-then-nework strategy
+    //2. Get the update-to-date data with cache-then-nework strategy
     $.getJSON(requestURL, function(data) {
         $( "p.announcement" ).html(data.message);
     });
